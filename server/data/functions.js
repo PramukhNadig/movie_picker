@@ -1,5 +1,6 @@
-import dotenv from 'dotenv'
-import firebase from 'firebase/app';
+import fetch from 'node-fetch';
+import adminDb from './db.js';
+
 
 async function getMovieFromIMDBID(imdbID) {
     let OMDB_API = process.env.OMDB_API_KEY;
@@ -28,8 +29,7 @@ async function getMovieFromIMDBLink(imdbLink) {
 }
 
 async function addMovieToSpecificList(imdbID, userID) {
-    const db = firebase.firestore();
-    const userRef = db.collection('users').doc(userID);
+    const userRef = adminDb.collection('users').doc(userID);
     const userDoc = await userRef.get();
     if (!userDoc.exists) {
         throw new Error('User not found');
@@ -99,3 +99,5 @@ async function pickMovieFromMoviesList() {
     const randomIndex = Math.floor(Math.random() * movies.length);
     return movies[randomIndex];
 }
+
+export { getMovieFromIMDBID, getMovieFromIMDBLink, addMovieToSpecificList, removeMoveFromSpecificList, checkIfMovieIsInList, getAllMovies, addMovieToMoviesList, removeMovieFromMoviesList, pickMovieFromMoviesList };
