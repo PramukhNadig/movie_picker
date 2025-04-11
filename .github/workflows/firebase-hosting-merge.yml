@@ -14,7 +14,7 @@ jobs:
           node-version: 21
 
       - run: |
-          cd client
+          cd server
           npm install
           npm run build
 
