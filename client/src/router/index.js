@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import AddMoviePage from '@/components/AddMoviePage'
+import Add from '@/components/Add.vue'
 
 Vue.use(Router)
 
@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/add',
       name: 'Add',
-      component: AddMoviePage
+      component: Add
     }
   ]
 })
